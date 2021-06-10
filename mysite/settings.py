@@ -25,7 +25,7 @@ SECRET_KEY = 'f^a+i!j#j5ckovp71&t@hp=v)r9e#x@c64xubjuh%a!8wk*qz0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,5 +127,8 @@ except ImportError:
 
 if not DEBUG:
     import django_heroku
+    import os
+    CHANNEL_ACCESS_TOKEN = os.environ["CHANNEL_ACCESS_TOKEN"]
+    CHANNEL_SECRET = os.environ["CHANNEL_SECRET"]
     django_heroku.settings(locals())
 
